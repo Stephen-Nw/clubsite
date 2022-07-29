@@ -6,11 +6,10 @@
     <title>Home</title>
 </head>
 <body>
-    <h1>Hello World!!!</h1>
-    {{ name }}
-    {{ month }}
-    {{ year }}
-    {{ cal|safe }}
-    {{month_number}}
+    <center>
+        <h1>Hello {{ name }}! Events for {{ month }} {{ year }}</h1>
+        {{ cal|safe }}
+        {{month_number}}
+    </center>
 </body>
 </html>
