@@ -18,6 +18,9 @@ def home(request, month, year):
     now = datetime.now()
     current_year = now.year
 
+    # Get current time
+    time = now.strftime('%I:%M:%S %p')
+
     return render(request, 'events/home.html', {
         "name": name,
         "month": month,
@@ -25,4 +28,5 @@ def home(request, month, year):
         "month_number": month_number,
         "cal": cal,
         "current_year": current_year,
+        "time": time,
     })
