@@ -4,7 +4,7 @@ from calendar import HTMLCalendar
 from datetime import datetime
 
 
-def home(request, month, year):
+def home(request, month=datetime.now().strftime('%B'), year=datetime.now().year):
     name = "Stephen"
 
     # Convert month from name to number
