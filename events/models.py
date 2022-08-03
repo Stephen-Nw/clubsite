@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -31,7 +32,9 @@ class Event(models.Model):
     # Use ForeignKey in many-to-one relationships; do not use in many-to-many relationships
     venue = models.ForeignKey(
         'Venue', on_delete=models.CASCADE, blank=True, null=True)
-    manager = models.CharField(max_length=60)
+    # manager = models.CharField(max_length=60)
+    manager = models.ForeignKey(
+        User, blank=True, null=True, on_delete=models.SET_NULL)
     description = models.TextField(blank=True)
     attendees = models.ManyToManyField(MyClubUser, blank=True)
 
