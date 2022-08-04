@@ -5,6 +5,10 @@ from datetime import datetime
 from .models import Event
 
 
+def add_venue(request):
+    pass
+
+
 def all_events(request):
     event_list = Event.objects.all()
     return render(request, 'events/event_list.html', {"event_list": event_list})
