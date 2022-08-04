@@ -9,11 +9,19 @@ class VenueForm(ModelForm):
         model = Venue
         fields = ('name', 'address', 'zip_code',
                   'phone', 'web', 'email_address')
+        labels = {
+            'name': '',
+            'address': '',
+            'zip_code': '',
+            'phone': '',
+            'web': '',
+            'email_address': '',
+        }
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'address': forms.TextInput(attrs={'class': 'form-control'}),
-            'zip_code': forms.TextInput(attrs={'class': 'form-control'}),
-            'phone': forms.TextInput(attrs={'class': 'form-control'}),
-            'web': forms.TextInput(attrs={'class': 'form-control'}),
-            'email_address': forms.EmailInput(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Venue Name'}),
+            'address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Address'}),
+            'zip_code': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Zip Code'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone'}),
+            'web': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Web Address'}),
+            'email_address': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email Address'}),
         }
