@@ -21,8 +21,6 @@ def add_venue(request):
 
     return render(request, 'events/add_venue.html', {'form': form, 'submitted': submitted})
 
-    return render(request, 'events/add_venue.html', {'form': form})
-
 
 def all_events(request):
     event_list = Event.objects.all()
