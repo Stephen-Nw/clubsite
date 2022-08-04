@@ -8,7 +8,7 @@ from .forms import VenueForm
 
 def add_venue(request):
     form = VenueForm
-    return render(request, 'events/add_venue.html', {})
+    return render(request, 'events/add_venue.html', {'form': form})
 
 
 def all_events(request):
