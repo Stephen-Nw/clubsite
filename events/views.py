@@ -3,8 +3,13 @@ import calendar
 from calendar import HTMLCalendar
 from django.http import HttpResponseRedirect
 from datetime import datetime
-from .models import Event
+from .models import Event, Venue
 from .forms import VenueForm
+
+
+def list_venues(request):
+    venue_list = Venue.objects.all()
+    return render(request, 'events/venue.html', {"venue_list": venue_list})
 
 
 def add_venue(request):
@@ -23,7 +28,7 @@ def add_venue(request):
 
 
 def all_events(request):
-    event_list = Event.objects.all().order_by()
+    event_list = Event.objects.all()
     return render(request, 'events/event_list.html', {"event_list": event_list})
 
 

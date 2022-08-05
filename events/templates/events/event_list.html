@@ -18,8 +18,7 @@
 <li>Venue Website: {{ event.venue.web }}</li>
 <li>Manager: {{ event.manager }}</li>
 <li>Description: {{ event.description }}</li>
-<li>Approved: {{ event.approved }}</li>
-	<li>Attendees:<br/>
+<li>Attendees:<br/>
 	{% for user in event.attendees.all %}
 {{ user }}<br/>
   
