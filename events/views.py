@@ -23,7 +23,7 @@ def add_venue(request):
 
 
 def all_events(request):
-    event_list = Event.objects.all()
+    event_list = Event.objects.all().order_by()
     return render(request, 'events/event_list.html', {"event_list": event_list})
 
 
