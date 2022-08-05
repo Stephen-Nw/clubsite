@@ -11,7 +11,7 @@ def search_venues(request):
     if request.method == 'POST':
         searched = request.POST['searched']
         venues = Venue.objects.filter(name__contains=searched)
-        return render(request, 'events/search_venues.html', {'searched': searched})
+        return render(request, 'events/search_venues.html', {'searched': searched, 'venues': venues})
     else:
         return render(request, 'events/search_venues.html', {})
 
