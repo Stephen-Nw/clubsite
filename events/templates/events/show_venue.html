@@ -2,11 +2,30 @@
 
 
 {% block content %}
-    <center>
-        <h1>Venue:</h1>
-        <br>
-        {{ venue }}
+
+
+    <div class="card">
+<div class="card-header">
+    Venue
+</div>
+<div class="card-body">
+    <h5 class="card-title">Venue: {{ venue }}</h5>
+    <p class="card-text">
+    <ul>
+        <li>{{ venue.address }}</li>
+        <li>{{ venue.zip_code }}</li>
+        <li>{{ venue.phone }}</li>
+        <li>{{ venue.email_address }}</li>
+        <a href="{{ venue.web }}">{{ venue.web }}</a></li>
+        
+    </ul>
+
+
+
+    </p>
+</div>
+</div>
 
  
-    </center>
+
 {% endblock content %}
