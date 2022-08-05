@@ -5,6 +5,11 @@
     <center>
     {% if searched %}    
         <h1>You Searched For {{ searched }}</h1>
+        <br>
+    {% for venue in venues %}
+        {{ venue }} <br>
+    {% endfor %}
+    
     {% else %}
         <h1>Hey!! You Forgot To Search For A Venue...</h1>
     {% endif %}
