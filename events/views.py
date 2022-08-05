@@ -8,8 +8,10 @@ from .forms import VenueForm
 
 
 def search_venues(request):
-
-    return render(request, 'events/search_venues.html', {})
+    if request.method == 'POST':
+        return render(request, 'events/search_venues.html', {})
+    else:
+        return render(request, 'events/search_venues.html', {})
 
 
 def show_venue(request, venue_id):
