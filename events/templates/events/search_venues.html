@@ -3,7 +3,11 @@
 
 {% block content %}
     <center>
-        <h1>You Searched For...</h1>
+    {% if searched %}    
+        <h1>You Searched For {{ searched }}</h1>
+    {% else %}
+        <h1>Hey!! You Forgot To Search For A Venue...</h1>
+    {% endif %}
 
 
     </center>
