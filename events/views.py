@@ -7,6 +7,11 @@ from .models import Event, Venue
 from .forms import VenueForm
 
 
+def update_venue(request, venue_id):
+    venue = Venue.object.get(pk=venue_id)
+    return render(request, 'events/update_venue.html', {'venue': venue})
+
+
 def search_venues(request):
     if request.method == 'POST':
         searched = request.POST['searched']
