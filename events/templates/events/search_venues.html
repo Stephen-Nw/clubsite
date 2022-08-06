@@ -7,9 +7,9 @@
         <h1>You Searched For {{ searched }}</h1>
         <br>
     {% for venue in venues %}
-        {{ venue }} <br>
+       <a href="{% url 'show-venue' venue.id %}">{{ venue }}</a>
     {% endfor %}
-    
+
     {% else %}
         <h1>Hey!! You Forgot To Search For A Venue...</h1>
     {% endif %}
