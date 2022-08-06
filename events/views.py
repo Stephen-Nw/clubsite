@@ -1,3 +1,4 @@
+from turtle import Vec2D
 from django.shortcuts import render
 import calendar
 from calendar import HTMLCalendar
@@ -9,7 +10,8 @@ from .forms import VenueForm
 
 def update_venue(request, venue_id):
     venue = Venue.objects.get(pk=venue_id)
-    return render(request, 'events/update_venue.html', {'venue': venue})
+    form = VenueForm(request.POST or None)
+    return render(request, 'events/update_venue.html', {'venue': venue, 'form': form})
 
 
 def search_venues(request):
