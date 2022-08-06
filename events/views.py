@@ -1,16 +1,20 @@
-from turtle import Vec2D
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 import calendar
 from calendar import HTMLCalendar
 from django.http import HttpResponseRedirect
 from datetime import datetime
+
+from django.urls import is_valid_path
 from .models import Event, Venue
 from .forms import VenueForm
 
 
 def update_venue(request, venue_id):
     venue = Venue.objects.get(pk=venue_id)
-    form = VenueForm(request.POST or None)
+    form = VenueForm(request.POST or None, instance=venue)
+    if form.is_valid():
+        form.save()
+        return redirect('list-venues')
     return render(request, 'events/update_venue.html', {'venue': venue, 'form': form})
 
 
