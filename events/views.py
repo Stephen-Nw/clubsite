@@ -9,6 +9,10 @@ from .models import Event, Venue
 from .forms import VenueForm
 
 
+def add_event(request):
+    return render(request, 'events/add_event.html', {})
+
+
 def update_venue(request, venue_id):
     venue = Venue.objects.get(pk=venue_id)
     form = VenueForm(request.POST or None, instance=venue)
