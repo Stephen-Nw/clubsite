@@ -12,9 +12,21 @@ def venue_text(request):
     response = HttpResponse(content_type='text/plain')
     response['Content-Disposition'] = 'attachment; filename=venues.txt'
 
-    lines = ['This is line 1\n',
-             'This is line 2\n',
-             'This is line 3\n']
+    # Designate The Model
+    venues = Venue.objects.all()
+
+    # Create blank list
+    lines = []
+
+    #  Loop through and output to list
+    for venue in venues:
+        lines.append(
+            f'{venue.name}\n{venue.address}\n{venue.zip_code}\n{venue.phone}\n{venue.web}\n{venue.email_address}\n\n\n')
+
+    # lines = ['This is line 1\n',
+    #          'This is line 2\n',
+    #          'This is line 3\n\n'
+    #          'This is cool\n']
 
     # Write to TextFile
     response.writelines(lines)
