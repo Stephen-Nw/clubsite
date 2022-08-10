@@ -1,10 +1,24 @@
 from django.shortcuts import redirect, render
 import calendar
 from calendar import HTMLCalendar
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from datetime import datetime
 from .models import Event, Venue
 from .forms import VenueForm, EventForm
+
+
+# Generate text file venue list
+def venue_text(request):
+    response = HttpResponse(content_type='text/plain')
+    response['Content-Disposition'] = 'attachment; filename=venues.txt'
+
+    lines = ['This is line 1\n',
+             'This is line 2\n',
+             'This is line 3\n']
+
+    # Write to TextFile
+    response.writelines(lines)
+    return response
 
 
 # Delete a venue
