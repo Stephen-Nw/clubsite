@@ -2,9 +2,23 @@
 
 
 {% block content %}
-    <center>
+
         <h1>Add Event</h1> <br>
 
+        {% if submitted %}
+        Your Event was submitted successfully!!!
+    {% else %}
 
-    </center>
+    <form action="" method=POST>
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <input type="Submit" value="Submit" class="btn btn-secondary">
+
+    </form>
+    
+    {% endif %}
+
+
 {% endblock content %}
