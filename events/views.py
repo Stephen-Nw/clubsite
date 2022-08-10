@@ -7,6 +7,12 @@ from .models import Event, Venue
 from .forms import VenueForm, EventForm
 
 
+def delete_event(request, event_id):
+    event = Event.objects.get(pk=event_id)
+    event.delete()
+    return redirect('list-events')
+
+
 def update_event(request, event_id):
     event = Event.objects.get(pk=event_id)
     form = EventForm(request.POST or None, instance=event)
