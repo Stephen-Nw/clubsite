@@ -8,6 +8,53 @@ from .forms import VenueForm, EventForm
 import csv
 
 
+# MODULES FOR PDF IMPORT
+from django.http import FileResponse
+import io
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import inch
+from reportlab.lib.pagesizes import letter
+
+
+# Generate PDF venue list
+def venue_pdf(request):
+    # Create Bytestream buffer
+    buffer = io.BytesIO()
+    # Create a canvas
+    cvs = canvas.Canvas(buffer, pagesize=letter, bottomup=0)
+    # Create a text object
+    textobj = cvs.beginText()
+    textobj.setTextOrigin(inch, inch)
+    textobj.setFont("Helvetica", 14)
+
+    # Designate The Model
+    venues = Venue.objects.all()
+
+    # Create blank list
+    lines = []
+
+    for venue in venues:
+        lines.append(venue.name)
+        lines.append(venue.address)
+        lines.append(venue.zip_code)
+        lines.append(venue.phone)
+        lines.append(venue.web)
+        lines.append(venue.email_address)
+        lines.append(" ")
+
+    # Loop
+    for line in lines:
+        textobj.textLine(line)
+
+    # Finish up
+    cvs.drawText(textobj)
+    cvs.showPage()
+    cvs.save()
+    buffer.seek(0)
+
+    return FileResponse(buffer, as_attachment=True, filename='venue.pdf')
+
+
 # Generate csv file venue list
 def venue_csv(request):
     response = HttpResponse(content_type='text/csv')
