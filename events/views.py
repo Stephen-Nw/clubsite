@@ -5,6 +5,30 @@ from django.http import HttpResponseRedirect, HttpResponse
 from datetime import datetime
 from .models import Event, Venue
 from .forms import VenueForm, EventForm
+import csv
+
+
+# Generate csv file venue list
+def venue_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=venues.csv'
+
+    # Create a csv writer
+    writer = csv.writer(response)
+
+    # Designate The Model
+    venues = Venue.objects.all()
+
+    # Add column headings to the csv file
+    writer.writerow(['Venue Name', 'Address', 'Zip Code',
+                    'Phone Number', 'Web Address', 'Email'])
+
+    #  Loop through and output to list
+    for venue in venues:
+        writer.writerow([
+            venue.name, venue.address, venue.zip_code, venue.phone, venue.web, venue.email_address])
+
+    return response
 
 
 # Generate text file venue list
