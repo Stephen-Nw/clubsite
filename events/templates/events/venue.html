@@ -21,11 +21,11 @@
     {% endfor %}
 </table>
   <br> <br>
-  {{ venues }} <br>
+  {% comment %} {{ venues }} <br>
   Has Previous: {{ venues.has_previous }} <br>
   Has Next: {{ venues.has_next }} <br>
   Current Page: {{ venues.number }} <br>
-  Number of Pages: {{ venues.paginator.num_pages }} <br>
+  Number of Pages: {{ venues.paginator.num_pages }} <br> {% endcomment %}
   <hr><br><br>
 
 {% if venues.has_previous %}
