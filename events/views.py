@@ -4,7 +4,7 @@ from calendar import HTMLCalendar
 from django.http import HttpResponseRedirect, HttpResponse
 from datetime import datetime
 from .models import Event, Venue
-from .forms import VenueForm, EventForm
+from .forms import VenueForm, EventForm, EventFormAdmin
 import csv
 
 
@@ -134,7 +134,10 @@ def update_event(request, event_id):
 def add_event(request):
     submitted = False
     if request.method == "POST":
-        form = EventForm(request.POST)
+        if request.user.is_superuser:
+            form = EventFormAdmin(request.POST)
+        else:
+            form = EventForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/add_event?submitted=True')
