@@ -142,7 +142,11 @@ def add_event(request):
             form.save()
             return HttpResponseRedirect('/add_event?submitted=True')
     else:
-        form = EventForm
+        # Just going to page, not
+        if request.user.is_superuser:
+            form = EventFormAdmin
+        else:
+            form = EventForm
         if 'submitted' in request.GET:
             submitted = True
     return render(request, 'events/add_event.html', {'form': form, 'submitted': submitted})
