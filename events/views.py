@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 import calendar
 from calendar import HTMLCalendar
 from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib import messages
 from datetime import datetime
 from .models import Event, Venue
 from .forms import VenueForm, EventForm, EventFormAdmin
@@ -118,8 +119,14 @@ def delete_venue(request, venue_id):
 # Delete an event
 def delete_event(request, event_id):
     event = Event.objects.get(pk=event_id)
-    event.delete()
-    return redirect('list-events')
+    if request.user == event.manager:
+        event.delete()
+        messages.success(request, ("Event Deleted"))
+        return redirect('list-events')
+    else:
+        messages.success(
+            request, ("You are not authorized to delete this event!!"))
+        return redirect('list-events')
 
 
 def update_event(request, event_id):
