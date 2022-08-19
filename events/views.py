@@ -141,11 +141,11 @@ def add_event(request):
                 return HttpResponseRedirect('/add_event?submitted=True')
         else:
             form = EventForm(request.POST)
-            event = form.save(commit=False)
-            event.manager = request.user  # logged in user
-            event.save()
             if form.is_valid():
-                form.save()
+                event = form.save(commit=False)
+                event.manager = request.user  # logged in user
+                event.save()
+                # form.save()
                 return HttpResponseRedirect('/add_event?submitted=True')
     else:
         # Just going to page, not
