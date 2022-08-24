@@ -21,11 +21,14 @@ from reportlab.lib.pagesizes import letter
 # IMPORT PAGINATION MODULES
 from django.core.paginator import Paginator
 
+
 # create filtered event list for logged in user
-
-
 def my_events(request):
-    pass
+    if request.user.is_authenticated:
+        return render(request, 'events/my_events.html')
+    else:
+        messages.success(request, ("You are not authorized to view this page"))
+        return redirect('home')
 
 
 # Generate PDF venue list
