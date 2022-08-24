@@ -21,6 +21,12 @@ from reportlab.lib.pagesizes import letter
 # IMPORT PAGINATION MODULES
 from django.core.paginator import Paginator
 
+# create filtered event list for logged in user
+
+
+def my_events(request):
+    pass
+
 
 # Generate PDF venue list
 def venue_pdf(request):
