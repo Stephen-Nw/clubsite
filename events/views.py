@@ -26,7 +26,7 @@ from django.core.paginator import Paginator
 def search_events(request):
     if request.method == 'POST':
         searched = request.POST['searched']
-        events = Event.objects.filter(name__contains=searched)
+        events = Event.objects.filter(description__contains=searched)
         return render(request, 'events/search_events.html', {'searched': searched, 'events': events})
     else:
         return render(request, 'events/search_events.html', {})
