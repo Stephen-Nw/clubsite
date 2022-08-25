@@ -2,7 +2,14 @@
 
 
 {% block content %}
-    <center>
+
+<form role="search" method=POST action="{% url 'search_events' %}">
+    {% csrf_token %}
+    <input class="form-control me-2" type="search" placeholder="Search Events" aria-label="Search" name="searched">
+    <br>
+    <button class="btn btn-outline-secondary" type="submit">Search</button>
+  </form>
+
     {% if searched %}    
         <h1>You Searched For {{ searched }}</h1>
         <br>
@@ -15,5 +22,5 @@
     {% endif %}
 
 
-    </center>
+
 {% endblock content %}
