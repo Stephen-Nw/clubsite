@@ -22,6 +22,16 @@ from reportlab.lib.pagesizes import letter
 from django.core.paginator import Paginator
 
 
+# Search for events on events page
+def search_events(request):
+    if request.method == 'POST':
+        searched = request.POST['searched']
+        events = Event.objects.filter(name__contains=searched)
+        return render(request, 'events/search_events.html', {'searched': searched, 'events': events})
+    else:
+        return render(request, 'events/search_events.html', {})
+
+
 # create filtered event list for logged in user
 def my_events(request):
     if request.user.is_authenticated:
