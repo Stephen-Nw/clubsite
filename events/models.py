@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import date
 
 # Create your models here.
 
@@ -47,5 +48,16 @@ class Event(models.Model):
 
     @property
     def days_till_event(self):
-        days_remaining = 0
-        return days_remaining
+        current_day = date.today()
+        days_remaining = self.event_date.date() - current_day
+        days_remaining_formatted = str(days_remaining).split(",", 1)[0]
+        return days_remaining_formatted
+
+    @property
+    def is_past(self):
+        current_day = date.today()
+        if self.event_date.date() < current_day:
+            event = "Past event"
+        else:
+            event = "Future event"
+        return event
