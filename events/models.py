@@ -44,3 +44,8 @@ class Event(models.Model):
     # Fxn below allows name of columns do display on admin page
     def __str__(self):
         return self.name
+
+    @property
+    def days_till_event(self):
+        days_remaining = 0
+        return days_remaining
