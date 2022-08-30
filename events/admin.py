@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Event, Venue, MyClubUser
+from django.contrib.auth.models import Group
 
 
 # Models are registered on this page so that they show up in the admin area
@@ -12,9 +13,12 @@ from .models import Event, Venue, MyClubUser
 admin.site.register(MyClubUser)
 # admin.site.register(Event)
 
+
+# Remove Groups
+admin.site.unregister(Group)
+
+
 # CUSTOMIZE THE MODEL DISPLAY IN ADMIN
-
-
 @admin.register(Venue)
 class VenueAdmin(admin.ModelAdmin):
     # Selects column from model to display
