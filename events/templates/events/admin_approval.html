@@ -4,6 +4,12 @@
 {% block content %}
 
     <h1>Admin Event Approval Portal</h1>
+    <br><br>
+
+    <form action="" method=POST>
+        {% csrf_token %}
+
+    
 
     <table class="table table-striped table-hover table-bordered">
         <thead>
@@ -37,6 +43,8 @@
       <br>
 
       <button class='btn btn-secondary' type='submit'>Update Approval</button>
+
+    </form>
     
 
 
