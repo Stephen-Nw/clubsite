@@ -6,6 +6,7 @@
 	<br/>
 	
 {% for event in event_list %}
+{% if event.approved %}
 <div class="card">
   <div class="card-header">
     {{ event }}
@@ -49,6 +50,7 @@
 
 
 <br/><br/>
+{% endif %}
 
 
 {% endfor %}
