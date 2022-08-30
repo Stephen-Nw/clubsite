@@ -22,6 +22,11 @@ from reportlab.lib.pagesizes import letter
 from django.core.paginator import Paginator
 
 
+# Create Admin Event Approval page
+def admin_approval(request):
+    return render(request, 'events/admin_approval.html', {})
+
+
 # Search for events on events page
 def search_events(request):
     if request.method == 'POST':
