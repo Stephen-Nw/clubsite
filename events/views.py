@@ -24,7 +24,13 @@ from django.core.paginator import Paginator
 
 # Create Admin Event Approval page
 def admin_approval(request):
-    return render(request, 'events/admin_approval.html', {})
+    event_list = Event.objects.all().order_by("-event_date")
+    if request.user.is_superuser:
+        return render(request, 'events/admin_approval.html', {"event_list": event_list})
+    else:
+        messages.success(request, ("You are not authorized to view this page"))
+        return redirect('home')
+    # return render(request, 'events/admin_approval.html')
 
 
 # Search for events on events page
