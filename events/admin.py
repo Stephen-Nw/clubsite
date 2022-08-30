@@ -32,7 +32,7 @@ class VenueAdmin(admin.ModelAdmin):
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
     fields = (('name', 'venue'), 'event_date', 'description',
-              'manager')  # Customize display fields
+              'manager', 'approved')  # Customize display fields
     list_display = ('name', 'event_date', 'venue')
     list_filter = ('event_date', 'venue')  # Filter parameters
     ordering = ('-event_date',)  # Sort in reverse
