@@ -41,6 +41,7 @@ class Event(models.Model):
     description = models.TextField(blank=True)
     attendees = models.ManyToManyField(
         User, blank=True, related_name="attendee")
+    approved = models.BooleanField('Approved', default=False)
 
     # Fxn below allows name of columns do display on admin page
     def __str__(self):
