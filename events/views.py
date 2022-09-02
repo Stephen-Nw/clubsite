@@ -28,7 +28,11 @@ def venue_events(request, venue_id):
     venue = Venue.objects.get(id=venue_id)
     # Grab the events from that venue
     events = venue.event_set.all()  # event_set does child query lookupos
-    return render(request, 'events/venue_events.html', {"events": events})
+    if events:
+        return render(request, 'events/venue_events.html', {"events": events})
+    else:
+        messages.success(request, ("That venue has no events"))
+        return redirect('admin_approval')
 
 
 # Create Admin Event Approval page
