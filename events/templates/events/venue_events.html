@@ -3,10 +3,10 @@
 
 {% block content %}
 
-<h1>List Eevents</h1>
+<h1>List Events</h1>
 
 {% for event in events %}
-{{ event }} <br>
+<a href="{% url 'show-event' event.id %}">{{ event }}</a><br>
 {% endfor %}
 
 
