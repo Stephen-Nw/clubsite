@@ -22,6 +22,12 @@ from reportlab.lib.pagesizes import letter
 from django.core.paginator import Paginator
 
 
+# Show Event
+def show_event(request, event_id):
+    event = Event.objects.get(pk=event_id)
+    return render(request, "events/show_event.html", {"event": event})
+
+
 # Create list of events tied to a venue
 def venue_events(request, venue_id):
     # Grab the venue
