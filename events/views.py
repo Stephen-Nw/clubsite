@@ -22,6 +22,11 @@ from reportlab.lib.pagesizes import letter
 from django.core.paginator import Paginator
 
 
+# Create list of events tied to a venue
+def venue_events(request, venue_id):
+    return render(request, 'events/venue_events.html', {})
+
+
 # Create Admin Event Approval page
 def admin_approval(request):
     # Get The Venues
