@@ -24,7 +24,11 @@ from django.core.paginator import Paginator
 
 # Create list of events tied to a venue
 def venue_events(request, venue_id):
-    return render(request, 'events/venue_events.html', {})
+    # Grab the venue
+    venue = Venue.objects.get(id=venue_id)
+    # Grab the events from that venue
+    events = venue.event_set.all()  # event_set does child query lookupos
+    return render(request, 'events/venue_events.html', {"events": events})
 
 
 # Create Admin Event Approval page
