@@ -35,7 +35,7 @@
                 <a href="{% url 'show-venue' venue.id %}">{{ venue }}</a> 
             </td>
             <td>
-                <a href="{% url 'venue-events' venue.id %}">List Events</a> 
+                <a href="{% url 'venue-events' venue.id %}" class="btn btn-sm btn-secondary">List Events</a> 
             </td>
         {% endfor %}
           </tr>
