@@ -33,7 +33,7 @@ def venue_events(request, venue_id):
     # Grab the venue
     venue = Venue.objects.get(id=venue_id)
     # Grab the events from that venue
-    events = venue.event_set.all()  # event_set does child query lookupos
+    events = venue.event_set.all()  # _set is for reverse lookups
     if events:
         return render(request, 'events/venue_events.html', {"events": events})
     else:
@@ -268,7 +268,9 @@ def search_venues(request):
 def show_venue(request, venue_id):
     venue = Venue.objects.get(pk=venue_id)
     venue_owner = User.objects.get(pk=venue.owner)
-    return render(request, 'events/show_venue.html', {'venue': venue, 'venue_owner': venue_owner})
+    # Grab the events from that venue
+    events = venue.event_set.all()
+    return render(request, 'events/show_venue.html', {'venue': venue, 'venue_owner': venue_owner, 'events': events})
 
 
 def list_venues(request):
